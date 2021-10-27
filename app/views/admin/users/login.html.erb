@@ -4,14 +4,13 @@
       <h1>Login</h1>
 
       <% if @user_exists %>
+        <p>Digite seu email e senha para logar.</p>
 
-        <h2>Existe user</h2>
-
+        <%= render "admin/users/partials/form_login" %>
       <% else %>
-        <h2>N Existe user</h2>
+        <p>Crie seu primeiro usuário</p>
 
-        <%= render "admin/users/partials/form", user: @user %>
-
+        <%= render "admin/users/partials/form", user: @user, admin: true  %>
       <% end %>
     </div>
   </div>
