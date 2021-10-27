@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+      <h1>Login</h1>
+
+      <% if @user_exists %>
+
+        <h2>Existe user</h2>
+
+      <% else %>
+        <h2>N Existe user</h2>
+
+        <%= render "admin/users/partials/form", user: @user %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
