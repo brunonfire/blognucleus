@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :require_user, except: [:login, :do_login, :create]
   before_action :set_user, only: %i[ show edit update destroy ]
 
   #==========================================================
@@ -6,7 +7,7 @@ class Admin::UsersController < ApplicationController
   #==========================================================
 
   def login
-    @user_exists = true
+      @user_exists = true
 
     unless User.exists?
       @user_exists = false
