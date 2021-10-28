@@ -4,7 +4,6 @@
       <h1>Login</h1>
 
       <% if @user_exists %>
-<<<<<<< HEAD
       <p>Digite seu email e senha para logar.</p>
 
       <%= render "admin/users/partials/form_login" %>
@@ -13,13 +12,11 @@
         <p>Crie seu primeiro usuario</p>
 
         <%= render "admin/users/partials/form", user: @user, admin: true %>
-=======
         <p>Digite seu email e senha para logar.</p>
 
         <%= render "admin/users/partials/form_login" %>
       <% else %>
         <p>Crie seu primeiro usuário</p>
->>>>>>> 94ea104030dc38fc7558ac1cd308e0cae0789e79
 
         <%= render "admin/users/partials/form", user: @user, admin: true  %>
       <% end %>
