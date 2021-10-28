@@ -15,6 +15,8 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  #==========================================================
+
   def do_login
 
   end

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     # destroy
     # crete
     # update
+    # action_nmespace_controller
 
     resources :users do
       get :login, on: :collection
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
 
   end
 
+  # action_controller
   resources :posts
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
