@@ -1,29 +1,19 @@
 <%= form_tag(do_login_admin_users_path, method: :post, role: "form", class: "form-validation") do %>
 
 
-<div class="mb-5">
-    <label for="email">E-mail</label>
-    <%= email_field :email, nil, class: "form-control" %>
-</div>
 
-<div class="mb-5">
-    <label for="senha">Senha</label>
-    <%= password_field :senha, nil, class: "form-control" %>
-</div>
 
-<%= submit_tag "Entrar", class: "btn btn_primary" %>
-=======
   <div class="mb-5">
     <label for="email">E-mail</label>
-    <%= email_field :email, nil, class: "form-control" %>
+    <%= email_field_tag :email, nil, class: "form-control" %>
   </div>
 
   <div class="mb-5">
     <label for="senha">Senha</label>
-    <%= password_field :senha, nil, class: "form-control" %>
+    <%= password_field_tag :senha, nil, class: "form-control" %>
   </div>
 
   <%= submit_tag "Entrar", class: "btn btn-primary" %>
->>>>>>> 94ea104030dc38fc7558ac1cd308e0cae0789e79
+
 
 <% end %>

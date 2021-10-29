@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
             return false
         end
     end 
-=======
+
   protected
 
   # Busca usuário com base na session
@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
->>>>>>> 94ea104030dc38fc7558ac1cd308e0cae0789e79
+
 
 
 end

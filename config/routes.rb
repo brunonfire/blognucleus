@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+
+    root :to => "main#index"
+
+
     resources :main
     resources :posts
 
@@ -12,10 +16,11 @@ Rails.application.routes.draw do
     # destroy
     # crete
     # update
-    # action_nmespace_controller
+    # action_namespace_controller
 
     resources :users do
       get :login, on: :collection
+      get :logout, on: :collection
       post :do_login, on: :collection
     end
 

@@ -66,3 +66,5 @@ gem 'jquery-rails'
 gem 'autoprefixer-rails'
 
 gem "figaro" # le os arquivos yml
+
+gem "font-awesome-rails"

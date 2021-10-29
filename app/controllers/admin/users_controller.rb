@@ -1,7 +1,10 @@
 class Admin::UsersController < ApplicationController
-  before_action :require_user, except: [:login, :do_login, :create]
+  before_action :require_user, :admin?, except: [:login, :do_login, :create]
   before_action :set_user, only: %i[ show edit update destroy ]
 
+  layout "admin"
+  
+  
   #==========================================================
   # LOGIN ===================================================
   #==========================================================
@@ -13,14 +16,47 @@ class Admin::UsersController < ApplicationController
       @user_exists = false
       @user = User.new
     end
+    render layout: "login"
   end
 
   #==========================================================
+  # verificacao de usuario e login
+def do_login
+  unless params[:email].blank?
+  user = User.find_by_email params[:email]
+  if user.blank?
+    #retornar erro
+    redirect_to login_admin_users_url, alert: "E-mail invalido."
+  else
+    #verificar senha
+    
+    if user.senha == params[:senha]
+    session[:email] = user.email
+    session[:uid] = user.id
+    cookies.signed[:user_id] = user.id
 
-  def do_login
-
+    redirect_to admin_main_index_url
+  else
+     #senha errada
+     redirect_to login_admin_users_url, alert: "Senha invalida."
   end
+end
+else
+    redirect_to login_admin_users_url, alert: "Por Favor digite um email valido."
+  end
+end 
 
+  #==========================================================
+  # desloga usuario
+
+  def logout
+    unless @current_user.blank?
+    session[:email] = nil
+    session[:uid] = nil
+    reset_session
+  end 
+  redirect_to login_admin_users_url
+end 
   #==========================================================
   # FUNCTIONS ===============================================
   #==========================================================
@@ -49,7 +85,7 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
+        format.html { redirect_to edit_admin_user_path(@user), notice: "Usuario cadastrado com sucesso." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -62,7 +98,7 @@ class Admin::UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
+        format.html { redirect_to edit_admin_user_path(@user), notice: "Usuario atualizado com sucesso." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -75,7 +111,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to admin_users_url, notice: "Usuario deletado com sucesso." }
       format.json { head :no_content }
     end
   end
